@@ -1,0 +1,3 @@
+/Users/ohdonggeun/workspace/snakeGame/CMakeFiles/snakeGame.dir
+/Users/ohdonggeun/workspace/snakeGame/CMakeFiles/edit_cache.dir
+/Users/ohdonggeun/workspace/snakeGame/CMakeFiles/rebuild_cache.dir
