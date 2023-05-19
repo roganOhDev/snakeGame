@@ -1,4 +1,3 @@
 cmake CMakeLists.txt
 rm -f snakeGame
 make
-./snakeGame

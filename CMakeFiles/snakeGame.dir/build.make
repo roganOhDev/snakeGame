@@ -83,17 +83,129 @@ CMakeFiles/snakeGame.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/main.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/main.cpp -o CMakeFiles/snakeGame.dir/main.cpp.s
 
+CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o: game/eatable/Eatable.cpp
+CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o -MF CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o.d -o CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.cpp
+
+CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.cpp > CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.i
+
+CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.cpp -o CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.s
+
+CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o: game/eatable/Fruit.cpp
+CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o -MF CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o.d -o CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/eatable/Fruit.cpp
+
+CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/eatable/Fruit.cpp > CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.i
+
+CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/eatable/Fruit.cpp -o CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.s
+
+CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o: game/eatable/Poison.cpp
+CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o -MF CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o.d -o CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/eatable/Poison.cpp
+
+CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/eatable/Poison.cpp > CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.i
+
+CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/eatable/Poison.cpp -o CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.s
+
+CMakeFiles/snakeGame.dir/game/Object.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/Object.cpp.o: game/Object.cpp
+CMakeFiles/snakeGame.dir/game/Object.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/snakeGame.dir/game/Object.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/Object.cpp.o -MF CMakeFiles/snakeGame.dir/game/Object.cpp.o.d -o CMakeFiles/snakeGame.dir/game/Object.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/Object.cpp
+
+CMakeFiles/snakeGame.dir/game/Object.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/Object.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/Object.cpp > CMakeFiles/snakeGame.dir/game/Object.cpp.i
+
+CMakeFiles/snakeGame.dir/game/Object.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/Object.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/Object.cpp -o CMakeFiles/snakeGame.dir/game/Object.cpp.s
+
+CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o: game/map/Wall.cpp
+CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o -MF CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o.d -o CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.cpp
+
+CMakeFiles/snakeGame.dir/game/map/Wall.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/map/Wall.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.cpp > CMakeFiles/snakeGame.dir/game/map/Wall.cpp.i
+
+CMakeFiles/snakeGame.dir/game/map/Wall.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/map/Wall.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.cpp -o CMakeFiles/snakeGame.dir/game/map/Wall.cpp.s
+
+CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o: game/snake/SnakeHead.cpp
+CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o -MF CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o.d -o CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeHead.cpp
+
+CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeHead.cpp > CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.i
+
+CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeHead.cpp -o CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.s
+
+CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o: CMakeFiles/snakeGame.dir/flags.make
+CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o: game/snake/SnakeTail.cpp
+CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o: CMakeFiles/snakeGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o -MF CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o.d -o CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o -c /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.cpp
+
+CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.cpp > CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.i
+
+CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.cpp -o CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.s
+
 # Object files for target snakeGame
 snakeGame_OBJECTS = \
-"CMakeFiles/snakeGame.dir/main.cpp.o"
+"CMakeFiles/snakeGame.dir/main.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/Object.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o" \
+"CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o"
 
 # External object files for target snakeGame
 snakeGame_EXTERNAL_OBJECTS =
 
 snakeGame: CMakeFiles/snakeGame.dir/main.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/Object.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o
+snakeGame: CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o
 snakeGame: CMakeFiles/snakeGame.dir/build.make
 snakeGame: CMakeFiles/snakeGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable snakeGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable snakeGame"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/snakeGame.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

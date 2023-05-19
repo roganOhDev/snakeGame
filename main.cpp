@@ -1,21 +1,30 @@
 #include <iostream>
 #include <ncurses.h>
 #include <unistd.h>
+#include "game/eatable/Fruit.h"
+#include "game/eatable/Poison.h"
+#include "game/map/Wall.h"
+#include "game/snake/SnakeHead.h"
+#include "game/snake/SnakeTail.h"
 
-bool gameover;
+bool gameOver;
 const int width = 30;
 const int height = 30;
-int x, y, fruitX, fruitY, poisonX, poisonY, score;
-int tailX[100], tailY[100];
+int score;
+Fruit *fruit;
+Poison *poison;
+Object *map[width][height];
+SnakeTail *snakeTails[100];
+SnakeHead *snakeHead;
+int hx, hy;
 int nTail = 3;
-enum Direction {
-    STOP = 0, LEFT, RIGHT, UP, DOWN
-};
 Direction dir;
 
 using namespace std;
 
 void setup();
+
+void createMap();
 
 void draw();
 
@@ -23,11 +32,14 @@ void input();
 
 void logic();
 
+void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int prevHy);
+
+void updateTail(int prevHx, int prevHy);
 
 int main() {
     setup();
 
-    while (!gameover) {
+    while (!gameOver) {
         draw();
         input();
         logic();
@@ -49,67 +61,45 @@ void setup() {
     cbreak(); // Disable line buffering, react immediately to input
     curs_set(0); // Hide the cursor
 
-    gameover = false;
+    gameOver = false;
     dir = STOP;
-    x = width / 2;
-    y = height / 2;
-    fruitX = rand() % width;
-    fruitY = rand() % height;
-    poisonX = rand() % width;
-    poisonY = rand() % height;
+
+    snakeHead = new SnakeHead(width / 2, height / 2);
+    hx = snakeHead->getX();
+    hy = snakeHead->getY();
+
+    snakeTails[0] = new SnakeTail(hx, hy + 1);
+    snakeTails[1] = new SnakeTail(hx, hy + 2);
+    snakeTails[2] = new SnakeTail(hx, hy + 3);
+
+    fruit = new Fruit(hx, hy, width, height);
+    poison = new Poison(hx, hy, width, height);
+
     score = 0;
 
-    tailX[0] = x;
-    tailY[0] = y+1;
-    tailX[1] = x;
-    tailY[1] = y+2;
-    tailX[2] = x;
-    tailY[2] = y+3;
+    createMap();
+
+
 }
 
 void draw() {
     clear();
 
     // Draw the top border
-    for (int i = 0; i < width + 2; i++)
-        printw("#");
-    printw("\n");
-
     // Draw the game field
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            if (j == 0)
-                printw("#"); // Draw the left border
-            if (i == y && j == x)
-                printw("O"); // Draw the snake's head
-            else if (i == fruitY && j == fruitX)
-                printw("F"); // Draw the fruit
-            else if (i == poisonY && j == poisonX)
-                printw("P"); // Draw the fruit
-            else {
-                bool printTail = false;
-                for (int k = 0; k < nTail; k++) {
-                    if (tailX[k] == j && tailY[k] == i) {
-                        printw("o"); // Draw the snake's tail
-                        printTail = true;
-                    }
-                }
-                if (!printTail)
-                    printw(" ");
-            }
-            if (j == width - 1)
-                printw("#"); // Draw the right border
+            printw("%c", map[i][j]->draw());
         }
         printw("\n");
     }
 
     // Draw the bottom border
-    for (int i = 0; i < width + 2; i++)
-        printw("#");
     printw("\n");
 
     // Display the score
     printw("Score: %d\n", score);
+    printw("Press 'x' to exit\n");
 
     refresh(); // Update the screen
 }
@@ -122,34 +112,34 @@ void input() {
     switch (key) {
         case KEY_LEFT:
             if (dir == RIGHT) {
-                gameover = true;
+                gameOver = true;
             } else {
                 dir = LEFT;
             }
             break;
         case KEY_RIGHT:
             if (dir == LEFT) {
-                gameover = true;
+                gameOver = true;
             } else {
                 dir = RIGHT;
             }
             break;
         case KEY_UP:
             if (dir == DOWN) {
-                gameover = true;
+                gameOver = true;
             } else {
                 dir = UP;
             }
             break;
         case KEY_DOWN:
             if (dir == UP) {
-                gameover = true;
+                gameOver = true;
             } else {
                 dir = DOWN;
             }
             break;
         case 'x':
-            gameover = true;
+            gameOver = true;
             break;
     }
 }
@@ -158,65 +148,107 @@ void logic() {
     if (dir == STOP)
         return;
 
-    // Update the tail position
-    int prevX = tailX[0];
-    int prevY = tailY[0];
-    int prev2X, prev2Y;
-    tailX[0] = x;
-    tailY[0] = y;
-    for (int i = 1; i < nTail; i++) {
-        prev2X = tailX[i];
-        prev2Y = tailY[i];
-        tailX[i] = prevX;
-        tailY[i] = prevY;
-        prevX = prev2X;
-        prevY = prev2Y;
-    }
-
+    int prevHx = hx;
+    int prevHy = hy;
     // Update the head position
     switch (dir) {
         case LEFT:
-            x--;
+            snakeHead->moveLeft(hx);
+            snakeMove(prevHx, prevHy, hx, hy, prevHx, prevHy);
             break;
         case RIGHT:
-            x++;
+            snakeHead->moveRight(hx);
+            snakeMove(prevHx, prevHy, hx, hy, prevHx, prevHy);
             break;
         case UP:
-            y--;
+            snakeHead->moveUp(hy);
+            snakeMove(prevHx, prevHy, hx, hy, prevHx, prevHy);
             break;
         case DOWN:
-            y++;
+            snakeHead->moveDown(hy);
+            snakeMove(prevHx, prevHy, hx, hy, prevHx, prevHy);
             break;
         case STOP:
             break;
     }
 
-    // Check for collision with borders
-    if (x < 0 || x >= width || y < 0 || y >= height)
-        gameover = true;
+}
 
-    // Check for collision with tail
-    for (int i = 0; i < nTail; i++) {
-        if (tailX[i] == x && tailY[i] == y){
-            gameover = true;
+void createMap() {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
+                map[i][j] = new Wall(j, i);
+            } else if (i == hy && j == hx) {
+                map[i][j] = snakeHead;
+            } else if (i == fruit->getY() && j == fruit->getX())
+                map[i][j] = fruit;
+            else if (i == poison->getY() && j == poison->getX()) {
+                map[i][j] = poison;
+            } else {
+                bool hasTail = false;
+                for (int k = 0; k < nTail; k++) {
+                    if (snakeTails[k]->getX() == j && snakeTails[k]->getY() == i) {
+                        map[i][j] = snakeTails[k];
+                        hasTail = true;
+                    }
+                }
+                if (!hasTail)
+                    map[i][j] = new Object(j, i);
+            }
         }
     }
+}
 
-    // Check for collision with fruit
-    if (x == fruitX && y == fruitY) {
+void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int prevHy) {
+    Object *tmpObject = map[newY][newX];
+    map[newY][newX] = map[beforeY][beforeX];
+
+    if (tmpObject->getType() == FRUIT) {
         score += 10;
-        fruitX = rand() % width;
-        fruitY = rand() % height;
-        nTail++;
+        fruit->newPosition(hx, hy, width, height);
+        map[fruit->getY()][fruit->getX()] = fruit;
+        map[beforeY][beforeX] = new Object(beforeX, beforeY);
+
+//        nTail++;
+    } else if (tmpObject->getType() == POISON) {
+        score -= 10;
+
+//        int prevPoisonX = poison->getX(), prevPoisonY = poison->getY();
+        poison->newPosition(hx, hy, width, height);
+
+//        snakeMove(prevPoisonX, prevPoisonY, poison->getX(), poison->getY());
+
+        if (nTail < 3) {
+            gameOver = true;
+        }
+    } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL) {
+        gameOver = true;
+
+    } else if (tmpObject->getType() == OBJECT) {
+        map[beforeY][beforeX] = tmpObject;
     }
 
-    if (x == poisonX && y == poisonY) {
-        score -= 10;
-        poisonX = rand() % width;
-        poisonY = rand() % height;
-        nTail--;
-        if (nTail < 3) {
-            gameover = true;
-        }
+    updateTail(prevHx, prevHy);
+}
+
+void updateTail(int prevHx, int prevHy) {
+    int y = snakeTails[0]->getY();
+    int x = snakeTails[0]->getX();
+
+    snakeTails[0]->setPosition(prevHx, prevHy);
+    map[prevHy][prevHx] = snakeTails[0];
+
+    for (int i = 1; i < nTail; i++) {
+        int tmpY = snakeTails[i]->getY();
+        int tmpX = snakeTails[i]->getX();
+
+        snakeTails[i]->setPosition(x, y);
+        map[y][x] = snakeTails[i];
+
+        y = tmpY;
+        x = tmpX;
     }
+
+    map[y][x] = new Object(x, y);
 }

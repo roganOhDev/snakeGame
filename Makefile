@@ -129,6 +129,174 @@ snakeGame/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/build
 .PHONY : snakeGame/fast
 
+game/Object.o: game/Object.cpp.o
+.PHONY : game/Object.o
+
+# target to build an object file
+game/Object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/Object.cpp.o
+.PHONY : game/Object.cpp.o
+
+game/Object.i: game/Object.cpp.i
+.PHONY : game/Object.i
+
+# target to preprocess a source file
+game/Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/Object.cpp.i
+.PHONY : game/Object.cpp.i
+
+game/Object.s: game/Object.cpp.s
+.PHONY : game/Object.s
+
+# target to generate assembly for a file
+game/Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/Object.cpp.s
+.PHONY : game/Object.cpp.s
+
+game/eatable/Eatable.o: game/eatable/Eatable.cpp.o
+.PHONY : game/eatable/Eatable.o
+
+# target to build an object file
+game/eatable/Eatable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o
+.PHONY : game/eatable/Eatable.cpp.o
+
+game/eatable/Eatable.i: game/eatable/Eatable.cpp.i
+.PHONY : game/eatable/Eatable.i
+
+# target to preprocess a source file
+game/eatable/Eatable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.i
+.PHONY : game/eatable/Eatable.cpp.i
+
+game/eatable/Eatable.s: game/eatable/Eatable.cpp.s
+.PHONY : game/eatable/Eatable.s
+
+# target to generate assembly for a file
+game/eatable/Eatable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.s
+.PHONY : game/eatable/Eatable.cpp.s
+
+game/eatable/Fruit.o: game/eatable/Fruit.cpp.o
+.PHONY : game/eatable/Fruit.o
+
+# target to build an object file
+game/eatable/Fruit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o
+.PHONY : game/eatable/Fruit.cpp.o
+
+game/eatable/Fruit.i: game/eatable/Fruit.cpp.i
+.PHONY : game/eatable/Fruit.i
+
+# target to preprocess a source file
+game/eatable/Fruit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.i
+.PHONY : game/eatable/Fruit.cpp.i
+
+game/eatable/Fruit.s: game/eatable/Fruit.cpp.s
+.PHONY : game/eatable/Fruit.s
+
+# target to generate assembly for a file
+game/eatable/Fruit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.s
+.PHONY : game/eatable/Fruit.cpp.s
+
+game/eatable/Poison.o: game/eatable/Poison.cpp.o
+.PHONY : game/eatable/Poison.o
+
+# target to build an object file
+game/eatable/Poison.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o
+.PHONY : game/eatable/Poison.cpp.o
+
+game/eatable/Poison.i: game/eatable/Poison.cpp.i
+.PHONY : game/eatable/Poison.i
+
+# target to preprocess a source file
+game/eatable/Poison.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.i
+.PHONY : game/eatable/Poison.cpp.i
+
+game/eatable/Poison.s: game/eatable/Poison.cpp.s
+.PHONY : game/eatable/Poison.s
+
+# target to generate assembly for a file
+game/eatable/Poison.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.s
+.PHONY : game/eatable/Poison.cpp.s
+
+game/map/Wall.o: game/map/Wall.cpp.o
+.PHONY : game/map/Wall.o
+
+# target to build an object file
+game/map/Wall.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o
+.PHONY : game/map/Wall.cpp.o
+
+game/map/Wall.i: game/map/Wall.cpp.i
+.PHONY : game/map/Wall.i
+
+# target to preprocess a source file
+game/map/Wall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/map/Wall.cpp.i
+.PHONY : game/map/Wall.cpp.i
+
+game/map/Wall.s: game/map/Wall.cpp.s
+.PHONY : game/map/Wall.s
+
+# target to generate assembly for a file
+game/map/Wall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/map/Wall.cpp.s
+.PHONY : game/map/Wall.cpp.s
+
+game/snake/SnakeHead.o: game/snake/SnakeHead.cpp.o
+.PHONY : game/snake/SnakeHead.o
+
+# target to build an object file
+game/snake/SnakeHead.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o
+.PHONY : game/snake/SnakeHead.cpp.o
+
+game/snake/SnakeHead.i: game/snake/SnakeHead.cpp.i
+.PHONY : game/snake/SnakeHead.i
+
+# target to preprocess a source file
+game/snake/SnakeHead.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.i
+.PHONY : game/snake/SnakeHead.cpp.i
+
+game/snake/SnakeHead.s: game/snake/SnakeHead.cpp.s
+.PHONY : game/snake/SnakeHead.s
+
+# target to generate assembly for a file
+game/snake/SnakeHead.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.s
+.PHONY : game/snake/SnakeHead.cpp.s
+
+game/snake/SnakeTail.o: game/snake/SnakeTail.cpp.o
+.PHONY : game/snake/SnakeTail.o
+
+# target to build an object file
+game/snake/SnakeTail.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o
+.PHONY : game/snake/SnakeTail.cpp.o
+
+game/snake/SnakeTail.i: game/snake/SnakeTail.cpp.i
+.PHONY : game/snake/SnakeTail.i
+
+# target to preprocess a source file
+game/snake/SnakeTail.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.i
+.PHONY : game/snake/SnakeTail.cpp.i
+
+game/snake/SnakeTail.s: game/snake/SnakeTail.cpp.s
+.PHONY : game/snake/SnakeTail.s
+
+# target to generate assembly for a file
+game/snake/SnakeTail.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.s
+.PHONY : game/snake/SnakeTail.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +330,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... snakeGame"
+	@echo "... game/Object.o"
+	@echo "... game/Object.i"
+	@echo "... game/Object.s"
+	@echo "... game/eatable/Eatable.o"
+	@echo "... game/eatable/Eatable.i"
+	@echo "... game/eatable/Eatable.s"
+	@echo "... game/eatable/Fruit.o"
+	@echo "... game/eatable/Fruit.i"
+	@echo "... game/eatable/Fruit.s"
+	@echo "... game/eatable/Poison.o"
+	@echo "... game/eatable/Poison.i"
+	@echo "... game/eatable/Poison.s"
+	@echo "... game/map/Wall.o"
+	@echo "... game/map/Wall.i"
+	@echo "... game/map/Wall.s"
+	@echo "... game/snake/SnakeHead.o"
+	@echo "... game/snake/SnakeHead.i"
+	@echo "... game/snake/SnakeHead.s"
+	@echo "... game/snake/SnakeTail.o"
+	@echo "... game/snake/SnakeTail.i"
+	@echo "... game/snake/SnakeTail.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
