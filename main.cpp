@@ -38,8 +38,6 @@ void updateTail(int prevHx, int prevHy, bool eatFruit);
 
 void deleteObject(int x, int y);
 
-void addTail();
-
 int main() {
     setup();
 
@@ -76,8 +74,8 @@ void setup() {
     snakeTails[1] = new SnakeTail(hx, hy + 2);
     snakeTails[2] = new SnakeTail(hx, hy + 3);
 
-    fruit = new Fruit(hx, hy, width, height);
-    poison = new Poison(hx, hy, width, height);
+    fruit = new Fruit(hx, hy, width, height, *snakeTails, nTail);
+    poison = new Poison(hx, hy, width, height, *snakeTails, nTail);
 
     score = 0;
 
@@ -154,7 +152,6 @@ void logic() {
 
     int prevHx = hx;
     int prevHy = hy;
-    // Update the head position
     switch (dir) {
         case LEFT:
             snakeHead->moveLeft(hx);
@@ -211,7 +208,7 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
 
     if (tmpObject->getType() == FRUIT) {
         score += 10;
-        fruit->newPosition(hx, hy, width, height);
+        fruit->newPosition(hx, hy, width, height, *snakeTails, nTail);
         map[fruit->getY()][fruit->getX()] = fruit;
         deleteObject(beforeX, beforeY);
 
@@ -219,7 +216,7 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
     } else if (tmpObject->getType() == POISON) {
         score -= 10;
 
-        poison->newPosition(hx, hy, width, height);
+        poison->newPosition(hx, hy, width, height, *snakeTails, nTail);
         map[poison->getY()][poison->getX()] = poison;
         deleteObject(beforeX, beforeY);
 

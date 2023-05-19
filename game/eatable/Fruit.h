@@ -7,12 +7,13 @@
 
 
 #include "Eatable.h"
+#include "../snake/SnakeTail.h"
 
 class Fruit : public Eatable {
 public:
     Fruit();
 
-    Fruit(int Hx, int Hy, int width, int height);
+    Fruit(int Hx, int Hy, int width, int height, SnakeTail *snakeTail, int nTail);
 
     char draw();
 

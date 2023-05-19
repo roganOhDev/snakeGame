@@ -6,7 +6,7 @@
 
 Poison::Poison() : Eatable() {}
 
-Poison::Poison(int Hx, int Hy, int width, int height) : Eatable(Hx, Hy, width, height) {}
+Poison::Poison(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail) : Eatable(Hx, Hy, width, height, snakeTails, nTail) {}
 
 char Poison::draw() {
     return 'P';

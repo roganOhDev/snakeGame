@@ -4,6 +4,7 @@
 #ifndef SNAKEGAME_EATABLE_H
 #define SNAKEGAME_EATABLE_H
 
+#include "../snake/SnakeTail.h"
 #include "../Object.h"
 
 class Eatable : public Object{
@@ -18,9 +19,9 @@ public:
 
     Eatable();
 
-    Eatable(int Hx, int Hy, int width, int height);
+    Eatable(int Hx, int Hy, int width, int height, SnakeTail *snakeTails,int nTail);
 
-    void newPosition(int Hx, int Hy, int width, int height);
+    void newPosition(int Hx, int Hy, int width, int height, SnakeTail *snakeTails,int nTail);
 
 private:
     int x;

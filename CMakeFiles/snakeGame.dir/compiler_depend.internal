@@ -9,8 +9,10 @@ CMakeFiles/snakeGame.dir/game/Object.cpp.o
 CMakeFiles/snakeGame.dir/game/eatable/Eatable.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.cpp
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.h
+ /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/Type.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/random
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__assert
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config
@@ -740,15 +742,19 @@ CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Fruit.cpp
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Fruit.h
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.h
+ /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/Type.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Object.h
 
 CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Poison.cpp
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Poison.h
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.h
+ /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/Type.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Object.h
 
 CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.cpp
@@ -1516,13 +1522,14 @@ CMakeFiles/snakeGame.dir/main.cpp.o
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/gethostuuid.h
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Fruit.h
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Eatable.h
+ /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/Type.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/eatable/Poison.h
  /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.h
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeHead.h
- /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/Direction.h
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
 

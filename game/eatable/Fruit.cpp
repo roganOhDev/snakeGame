@@ -6,7 +6,8 @@
 
 Fruit::Fruit() : Eatable() {}
 
-Fruit::Fruit(int Hx, int Hy, int width, int height) : Eatable(Hx, Hy, width, height) {}
+Fruit::Fruit(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail) : Eatable(Hx, Hy, width, height,
+                                                                                                snakeTails, nTail) {}
 
 char Fruit::draw() {
     return 'F';
