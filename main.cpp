@@ -19,6 +19,9 @@ SnakeHead *snakeHead;
 int hx, hy;
 int nTail = 3;
 Direction dir;
+int inputDelay = 1;
+int gameTime = 0, fruitTime = 0, poisonTime = 0;
+int maxEatableTime = 50;
 
 using namespace std;
 
@@ -102,13 +105,16 @@ void draw() {
     // Display the score
     printw("Score: %d\n", score);
     printw("Press 'x' to exit\n");
+    printw("%d %d\n", fruit->getX(), fruit->getY());
+    printw("%d %d\n", poison->getX(), poison->getY());
+    printw("gameTime: %d\n", gameTime);
 
     refresh(); // Update the screen
 }
 
 void input() {
     keypad(stdscr, TRUE); // Enable keypad input
-    halfdelay(1); // Set a maximum delay for getting input
+    halfdelay(inputDelay);
 
     int key = getch();
     switch (key) {
@@ -150,6 +156,25 @@ void logic() {
     if (dir == STOP)
         return;
 
+    gameTime++;
+    fruitTime++;
+    poisonTime++;
+
+    if (fruitTime > maxEatableTime) {
+        deleteObject(fruit->getX(), fruit->getY());
+        fruit->newPosition(hx, hy, width, height, *snakeTails, nTail);
+        map[fruit->getY()][fruit->getX()] = fruit;
+        score -= 5;
+        fruitTime = 0;
+    }
+
+    if (poisonTime > maxEatableTime) {
+        deleteObject(poison->getX(), poison->getY());
+        poison->newPosition(hx, hy, width, height, *snakeTails, nTail);
+        map[poison->getY()][poison->getX()] = poison;
+        poisonTime = 0;
+    }
+
     int prevHx = hx;
     int prevHy = hy;
     switch (dir) {
@@ -180,12 +205,16 @@ void createMap() {
         for (int j = 0; j < width; j++) {
             if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
                 map[i][j] = new Wall(j, i);
+
             } else if (i == hy && j == hx) {
                 map[i][j] = snakeHead;
+
             } else if (i == fruit->getY() && j == fruit->getX())
                 map[i][j] = fruit;
+
             else if (i == poison->getY() && j == poison->getX()) {
                 map[i][j] = poison;
+
             } else {
                 bool hasTail = false;
                 for (int k = 0; k < nTail; k++) {
@@ -210,15 +239,15 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         score += 10;
         fruit->newPosition(hx, hy, width, height, *snakeTails, nTail);
         map[fruit->getY()][fruit->getX()] = fruit;
-        deleteObject(beforeX, beforeY);
 
         eatFruit = true;
+        fruitTime = 0;
+
     } else if (tmpObject->getType() == POISON) {
         score -= 10;
 
         poison->newPosition(hx, hy, width, height, *snakeTails, nTail);
         map[poison->getY()][poison->getX()] = poison;
-        deleteObject(beforeX, beforeY);
 
         deleteObject(snakeTails[nTail - 1]->getX(), snakeTails[nTail - 1]->getY());
         nTail--;
@@ -226,11 +255,13 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         if (nTail < 3) {
             gameOver = true;
         }
+
+        poisonTime = 0;
+
     } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL) {
         gameOver = true;
 
     } else if (tmpObject->getType() == OBJECT) {
-        map[beforeY][beforeX] = tmpObject;
     }
 
     updateTail(prevHx, prevHy, eatFruit);
@@ -254,11 +285,11 @@ void updateTail(int prevHx, int prevHy, bool eatFruit) {
         x = tmpX;
     }
 
-    if(eatFruit){
+    if (eatFruit) {
         snakeTails[nTail] = new SnakeTail(x, y);
         map[y][x] = snakeTails[nTail];
         nTail++;
-    }else{
+    } else {
         deleteObject(x, y);
     }
 }

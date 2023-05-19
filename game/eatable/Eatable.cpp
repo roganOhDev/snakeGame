@@ -26,7 +26,7 @@ Eatable::Eatable() {
 }
 
 Eatable::Eatable(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail) {
-    bool onTail = false;
+    bool onTail;
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -47,7 +47,7 @@ Eatable::Eatable(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, i
                 break;
             }
         }
-    } while ((x == Hx && y == Hy) || x == width - 1 || y == height - 1 || x == 0 || y == 0 || onTail);
+    } while ((x == Hx && y == Hy) || x >= width - 1 || y >= height - 1 || x == 0 || y == 0 || onTail);
 }
 
 void Eatable::newPosition(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail) {
@@ -55,7 +55,7 @@ void Eatable::newPosition(int Hx, int Hy, int width, int height, SnakeTail *snak
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist;
+    std::uniform_int_distribution<int> dist(1);
 
     do {
         onTail = false;
@@ -72,5 +72,6 @@ void Eatable::newPosition(int Hx, int Hy, int width, int height, SnakeTail *snak
                 break;
             }
         }
-    } while ((x == Hx && y == Hy) || x == width - 1 || y == height - 1 || x == 0 || y == 0 || onTail);
+    } while ((x == Hx && y == Hy) || x >= width - 1 || y >= height - 1 || x == 0 || y == 0 || onTail);
 }
+
