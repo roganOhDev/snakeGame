@@ -5,9 +5,6 @@
 #define SNAKEGAME_EATABLE_H
 
 #include "../Object.h"
-#include <iostream>
-
-using namespace std;
 
 class Eatable : public Object{
 public:
@@ -28,8 +25,6 @@ public:
 private:
     int x;
     int y;
-
-
 };
 
 

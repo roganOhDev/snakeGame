@@ -34,7 +34,11 @@ void logic();
 
 void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int prevHy);
 
-void updateTail(int prevHx, int prevHy);
+void updateTail(int prevHx, int prevHy, bool eatFruit);
+
+void deleteObject(int x, int y);
+
+void addTail();
 
 int main() {
     setup();
@@ -201,6 +205,7 @@ void createMap() {
 }
 
 void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int prevHy) {
+    bool eatFruit = false;
     Object *tmpObject = map[newY][newX];
     map[newY][newX] = map[beforeY][beforeX];
 
@@ -208,16 +213,18 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         score += 10;
         fruit->newPosition(hx, hy, width, height);
         map[fruit->getY()][fruit->getX()] = fruit;
-        map[beforeY][beforeX] = new Object(beforeX, beforeY);
+        deleteObject(beforeX, beforeY);
 
-//        nTail++;
+        eatFruit = true;
     } else if (tmpObject->getType() == POISON) {
         score -= 10;
 
-//        int prevPoisonX = poison->getX(), prevPoisonY = poison->getY();
         poison->newPosition(hx, hy, width, height);
+        map[poison->getY()][poison->getX()] = poison;
+        deleteObject(beforeX, beforeY);
 
-//        snakeMove(prevPoisonX, prevPoisonY, poison->getX(), poison->getY());
+        deleteObject(snakeTails[nTail - 1]->getX(), snakeTails[nTail - 1]->getY());
+        nTail--;
 
         if (nTail < 3) {
             gameOver = true;
@@ -229,10 +236,10 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         map[beforeY][beforeX] = tmpObject;
     }
 
-    updateTail(prevHx, prevHy);
+    updateTail(prevHx, prevHy, eatFruit);
 }
 
-void updateTail(int prevHx, int prevHy) {
+void updateTail(int prevHx, int prevHy, bool eatFruit) {
     int y = snakeTails[0]->getY();
     int x = snakeTails[0]->getX();
 
@@ -250,5 +257,15 @@ void updateTail(int prevHx, int prevHy) {
         x = tmpX;
     }
 
+    if(eatFruit){
+        snakeTails[nTail] = new SnakeTail(x, y);
+        map[y][x] = snakeTails[nTail];
+        nTail++;
+    }else{
+        deleteObject(x, y);
+    }
+}
+
+void deleteObject(int x, int y) {
     map[y][x] = new Object(x, y);
 }
