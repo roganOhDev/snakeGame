@@ -225,6 +225,30 @@ game/eatable/Poison.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.s
 .PHONY : game/eatable/Poison.cpp.s
 
+game/map/ImmuneWall.o: game/map/ImmuneWall.cpp.o
+.PHONY : game/map/ImmuneWall.o
+
+# target to build an object file
+game/map/ImmuneWall.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/map/ImmuneWall.cpp.o
+.PHONY : game/map/ImmuneWall.cpp.o
+
+game/map/ImmuneWall.i: game/map/ImmuneWall.cpp.i
+.PHONY : game/map/ImmuneWall.i
+
+# target to preprocess a source file
+game/map/ImmuneWall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/map/ImmuneWall.cpp.i
+.PHONY : game/map/ImmuneWall.cpp.i
+
+game/map/ImmuneWall.s: game/map/ImmuneWall.cpp.s
+.PHONY : game/map/ImmuneWall.s
+
+# target to generate assembly for a file
+game/map/ImmuneWall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/game/map/ImmuneWall.cpp.s
+.PHONY : game/map/ImmuneWall.cpp.s
+
 game/map/Wall.o: game/map/Wall.cpp.o
 .PHONY : game/map/Wall.o
 
@@ -342,6 +366,9 @@ help:
 	@echo "... game/eatable/Poison.o"
 	@echo "... game/eatable/Poison.i"
 	@echo "... game/eatable/Poison.s"
+	@echo "... game/map/ImmuneWall.o"
+	@echo "... game/map/ImmuneWall.i"
+	@echo "... game/map/ImmuneWall.s"
 	@echo "... game/map/Wall.o"
 	@echo "... game/map/Wall.i"
 	@echo "... game/map/Wall.s"

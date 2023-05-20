@@ -756,6 +756,12 @@ CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/Type.h
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
 
+CMakeFiles/snakeGame.dir/game/map/ImmuneWall.cpp.o
+ /Users/ohdonggeun/workspace/snakeGame/game/map/ImmuneWall.cpp
+ /Users/ohdonggeun/workspace/snakeGame/game/map/ImmuneWall.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Object.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Type.h
+
 CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.cpp
  /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.h
@@ -1532,4 +1538,5 @@ CMakeFiles/snakeGame.dir/main.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeHead.h
  /Users/ohdonggeun/workspace/snakeGame/game/Direction.h
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
+ /Users/ohdonggeun/workspace/snakeGame/game/map/ImmuneWall.h
 

@@ -81,12 +81,12 @@ clean: CMakeFiles/snakeGame.dir/clean
 CMakeFiles/snakeGame.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snakeGame.dir/build.make CMakeFiles/snakeGame.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target snakeGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ohdonggeun/workspace/snakeGame/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target snakeGame"
 .PHONY : CMakeFiles/snakeGame.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/snakeGame.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ohdonggeun/workspace/snakeGame/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ohdonggeun/workspace/snakeGame/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/snakeGame.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ohdonggeun/workspace/snakeGame/CMakeFiles 0
 .PHONY : CMakeFiles/snakeGame.dir/rule

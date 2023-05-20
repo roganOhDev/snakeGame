@@ -13,5 +13,6 @@ enum Type {
     OBJECT,
     WALL,
     FRUIT,
-    POISON
+    POISON,
+    IMMUNEWALL
 };

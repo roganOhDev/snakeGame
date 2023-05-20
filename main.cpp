@@ -6,6 +6,7 @@
 #include "game/map/Wall.h"
 #include "game/snake/SnakeHead.h"
 #include "game/snake/SnakeTail.h"
+#include "game/map/ImmuneWall.h"
 
 bool gameOver;
 const int width = 30;
@@ -22,6 +23,7 @@ Direction dir;
 int inputDelay = 1;
 int gameTime = 0, fruitTime = 0, poisonTime = 0;
 int maxEatableTime = 50;
+int chosenLevel = 0;
 
 using namespace std;
 
@@ -41,8 +43,13 @@ void updateTail(int prevHx, int prevHy, bool eatFruit);
 
 void deleteObject(int x, int y);
 
+void chooseMap();
+
+int chooseMapInput();
+
 int main() {
     setup();
+    chooseMap();
 
     while (!gameOver) {
         draw();
@@ -89,6 +96,7 @@ void setup() {
 
 void draw() {
     clear();
+    printw("Level %d\n", chosenLevel);
 
     // Draw the top border
     // Draw the game field
@@ -204,7 +212,13 @@ void createMap() {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
-                map[i][j] = new Wall(j, i);
+                if ((i == 0 && j == 0) || (i == 0 && j == width - 1) || (i == height - 1 && j == 0) ||
+                    (i == height - 1 && j == width - 1)) {
+                    map[i][j] = new ImmuneWall(j, i);
+
+                } else {
+                    map[i][j] = new Wall(j, i);
+                }
 
             } else if (i == hy && j == hx) {
                 map[i][j] = snakeHead;
@@ -296,4 +310,40 @@ void updateTail(int prevHx, int prevHy, bool eatFruit) {
 
 void deleteObject(int x, int y) {
     map[y][x] = new Object(x, y);
+}
+
+void chooseMap() {
+    int choose = 0;
+    while (!choose) {
+        clear();
+        printw("Choose map: \n\n");
+        printw("1. Map 1\n");
+        printw("2. Map 2\n");
+        printw("3. Map 3\n");
+        choose = chooseMapInput();
+        usleep(10000); // Delay for smoother movement
+        refresh();
+    }
+
+    chosenLevel = choose;
+}
+
+int chooseMapInput() {
+    keypad(stdscr, TRUE); // Enable keypad input
+    halfdelay(inputDelay);
+
+    int key = getch();
+    switch (key) {
+        case '1':
+            return 1;
+        case '2':
+            return 2;
+        case '3':
+            return 3;
+        case 'x':
+            gameOver = true;
+            return 4;
+        default:
+            return 0;
+    }
 }

@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/snakeGame.dir/game/eatable/Fruit.cpp.o.d"
   "CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o"
   "CMakeFiles/snakeGame.dir/game/eatable/Poison.cpp.o.d"
+  "CMakeFiles/snakeGame.dir/game/map/ImmuneWall.cpp.o"
+  "CMakeFiles/snakeGame.dir/game/map/ImmuneWall.cpp.o.d"
   "CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o"
   "CMakeFiles/snakeGame.dir/game/map/Wall.cpp.o.d"
   "CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o"
