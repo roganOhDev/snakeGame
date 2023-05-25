@@ -7,6 +7,7 @@
 #include "game/snake/SnakeHead.h"
 #include "game/snake/SnakeTail.h"
 #include "game/map/ImmuneWall.h"
+#include "game/map/Gate.h"
 
 bool gameOver;
 const int width = 30;
@@ -17,11 +18,16 @@ Poison *poison;
 Object *map[width][height];
 SnakeTail *snakeTails[100];
 SnakeHead *snakeHead;
+bool passingGate = false;
+Gate *gates[2];
+int nGate = 0;
+Wall walls[300];
+int nWall = 0;
 int hx, hy;
 int nTail = 3;
 Direction dir;
 int inputDelay = 1;
-int gameTime = 0, fruitTime = 0, poisonTime = 0;
+int gameTime = 0, fruitTime = 0, poisonTime = 0, gateTime = 100;
 int maxEatableTime = 50;
 int chosenLevel = 0;
 
@@ -46,6 +52,10 @@ void deleteObject(int x, int y);
 void chooseMap();
 
 int chooseMapInput();
+
+void createGate();
+
+void gateToWall();
 
 int main() {
     setup();
@@ -113,8 +123,6 @@ void draw() {
     // Display the score
     printw("Score: %d\n", score);
     printw("Press 'x' to exit\n");
-    printw("%d %d\n", fruit->getX(), fruit->getY());
-    printw("%d %d\n", poison->getX(), poison->getY());
     printw("gameTime: %d\n", gameTime);
 
     refresh(); // Update the screen
@@ -167,6 +175,7 @@ void logic() {
     gameTime++;
     fruitTime++;
     poisonTime++;
+    gateTime++;
 
     if (fruitTime > maxEatableTime) {
         deleteObject(fruit->getX(), fruit->getY());
@@ -181,6 +190,11 @@ void logic() {
         poison->newPosition(hx, hy, width, height, *snakeTails, nTail);
         map[poison->getY()][poison->getX()] = poison;
         poisonTime = 0;
+    }
+
+    if (gateTime > 100 && !passingGate) {
+        gateToWall();
+        createGate();
     }
 
     int prevHx = hx;
@@ -217,7 +231,10 @@ void createMap() {
                     map[i][j] = new ImmuneWall(j, i);
 
                 } else {
-                    map[i][j] = new Wall(j, i);
+                    Wall *wall = new Wall(j, i);
+                    map[i][j] = wall;
+                    walls[nWall] = *wall;
+                    nWall++;
                 }
 
             } else if (i == hy && j == hx) {
@@ -271,6 +288,10 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         }
 
         poisonTime = 0;
+
+    } else if (tmpObject->getType() == GATE) {
+        passingGate = true;
+        //move snake
 
     } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL) {
         gameOver = true;
@@ -346,4 +367,28 @@ int chooseMapInput() {
         default:
             return 0;
     }
+}
+
+void createGate() {
+    Gate *gate0 = new Gate(walls, nWall);
+    gates[0] = gate0;
+    map[gates[0]->getY()][gates[0]->getX()] = gate0;
+
+    Gate *gate1 = new Gate(walls, nWall);
+    gates[1] = gate1;
+    map[gates[1]->getY()][gates[1]->getX()] = gate1;
+
+    gateTime = 0;
+    passingGate = false;
+    nGate = 2;
+}
+
+void gateToWall() {
+    if (nGate < 2) {
+        return;
+    }
+
+    map[gates[0]->getY()][gates[0]->getX()] = new Wall(gates[0]->getX(), gates[0]->getY());
+    map[gates[1]->getY()][gates[1]->getX()] = new Wall(gates[1]->getX(), gates[1]->getY());
+    nGate = 0;
 }

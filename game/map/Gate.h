@@ -5,12 +5,17 @@
 #ifndef SNAKEGAME_GATE_H
 #define SNAKEGAME_GATE_H
 
+#include "../Object.h"
+#include "Wall.h"
 
+class Gate : public Object{
+public:
+    Gate(Wall *walls, int nWall);
+    Gate(Gate *gate, Wall *walls, int nWall);
 
-class Gate {
-
+    Type getType();
+    char draw();
 };
-
 
 
 #endif //SNAKEGAME_GATE_H

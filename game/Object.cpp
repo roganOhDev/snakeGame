@@ -18,3 +18,11 @@ char Object::draw() {
 Type Object::getType() {
     return OBJECT;
 }
+
+int Object::getX() {
+    return x;
+}
+
+int Object::getY() {
+    return y;
+}

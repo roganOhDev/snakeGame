@@ -13,6 +13,8 @@ public:
     Object(int x, int y);
     virtual char draw();
     virtual Type getType();
+    int getX();
+    int getY();
 
 protected:
     int y;

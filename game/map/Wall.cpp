@@ -13,3 +13,7 @@ char Wall::draw() {
 Type Wall::getType() {
     return WALL;
 }
+
+Wall::Wall() {
+
+}
