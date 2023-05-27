@@ -1505,6 +1505,9 @@ CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/Type.h
  /Users/ohdonggeun/workspace/snakeGame/game/Direction.h
+ /Users/ohdonggeun/workspace/snakeGame/game/map/Gate.h
+ /Users/ohdonggeun/workspace/snakeGame/game/Object.h
+ /Users/ohdonggeun/workspace/snakeGame/game/map/Wall.h
 
 CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.cpp
@@ -2268,6 +2271,7 @@ CMakeFiles/snakeGame.dir/main.cpp.o
  /Users/ohdonggeun/workspace/snakeGame/game/Object.h
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeHead.h
  /Users/ohdonggeun/workspace/snakeGame/game/Direction.h
+ /Users/ohdonggeun/workspace/snakeGame/game/map/Gate.h
  /Users/ohdonggeun/workspace/snakeGame/game/snake/SnakeTail.h
  /Users/ohdonggeun/workspace/snakeGame/game/map/ImmuneWall.h
  /Users/ohdonggeun/workspace/snakeGame/game/map/Gate.h

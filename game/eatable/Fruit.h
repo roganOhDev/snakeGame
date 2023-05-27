@@ -18,6 +18,7 @@ public:
     char draw();
 
     Type getType();
+    bool isWall();
 };
 
 

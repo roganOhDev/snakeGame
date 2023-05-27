@@ -14,7 +14,8 @@ public:
     Wall(int x, int y);
     char draw();
 
-    Type getType() ;
+    Type getType();
+    bool isWall();
 };
 
 

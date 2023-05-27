@@ -13,6 +13,7 @@ public:
     Object(int x, int y);
     virtual char draw();
     virtual Type getType();
+    virtual bool isWall();
     int getX();
     int getY();
 

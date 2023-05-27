@@ -26,3 +26,7 @@ int Object::getX() {
 int Object::getY() {
     return y;
 }
+
+bool Object::isWall() {
+    return false;
+}

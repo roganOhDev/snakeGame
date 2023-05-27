@@ -15,3 +15,7 @@ char Poison::draw() {
 Type Poison::getType() {
     return POISON;
 }
+
+bool Poison::isWall() {
+    return false;
+}

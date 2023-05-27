@@ -15,6 +15,7 @@ public:
     int getY();
     void setPosition(int _x, int _y);
     Type getType();
+    bool isWall();
 };
 
 

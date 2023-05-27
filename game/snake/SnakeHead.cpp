@@ -30,7 +30,15 @@ void SnakeHead::moveUp(int &hy){
 void SnakeHead::moveDown(int &hy){
     hy = ++y;
 }
+void SnakeHead::moveToGate(Gate gate, int &hx, int &hy){
+    hx = x = gate.getX();
+    hy = y = gate.getY();
+}
 
 Type SnakeHead::getType() {
     return SNAKE_HEAD;
+}
+
+bool SnakeHead::isWall() {
+    return false;
 }

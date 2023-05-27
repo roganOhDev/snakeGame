@@ -26,3 +26,7 @@ void SnakeTail::setPosition(int _x, int _y) {
 Type SnakeTail::getType() {
     return SNAKE_TAIL;
 }
+
+bool SnakeTail::isWall() {
+    return false;
+}

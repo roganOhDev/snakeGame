@@ -57,6 +57,8 @@ void createGate();
 
 void gateToWall();
 
+void findGateOutDirectionAndMove(Gate gate);
+
 int main() {
     setup();
     chooseMap();
@@ -291,7 +293,11 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
 
     } else if (tmpObject->getType() == GATE) {
         passingGate = true;
-        //move snake
+        map[tmpObject->getY()][tmpObject->getX()] = tmpObject;
+        Gate outGate = Gate::findOtherGate(*gates, tmpObject);
+
+        snakeHead->moveToGate(outGate, hx, hy);
+        findGateOutDirectionAndMove(outGate);
 
     } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL) {
         gameOver = true;
@@ -391,4 +397,76 @@ void gateToWall() {
     map[gates[0]->getY()][gates[0]->getX()] = new Wall(gates[0]->getX(), gates[0]->getY());
     map[gates[1]->getY()][gates[1]->getX()] = new Wall(gates[1]->getX(), gates[1]->getY());
     nGate = 0;
+}
+
+void findGateOutDirectionAndMove(Gate gate) {
+    if (dir == UP) {
+        if (gate.getY() - 1 >= 0 && !map[gate.getY() - 1][gate.getX()]->isWall()) {
+
+        } else if (gate.getX() + 1 < width && !map[gate.getY()][gate.getX() + 1]->isWall()) {
+            dir = RIGHT;
+        } else if (gate.getX() - 1 >= 0 && !map[gate.getY()][gate.getX() - 1]->isWall()) {
+            dir = LEFT;
+        } else if (gate.getY() + 1 < height && !map[gate.getY() + 1][gate.getX()]->isWall()) {
+            dir = DOWN;
+        } else {
+            gameOver = true;
+        }
+
+    } else if (dir == RIGHT) {
+        if (gate.getX() + 1 < width && !map[gate.getY()][gate.getX() + 1]->isWall()) {
+
+        } else if (gate.getY() + 1 < height && !map[gate.getY() + 1][gate.getX()]->isWall()) {
+            dir = DOWN;
+        } else if (gate.getY() - 1 >= 0 && !map[gate.getY() - 1][gate.getX()]->isWall()) {
+            dir = UP;
+        } else if (gate.getX() - 1 >= 0 && !map[gate.getY()][gate.getX() - 1]->isWall()) {
+            dir = LEFT;
+        } else {
+            gameOver = true;
+        }
+
+    } else if (dir == DOWN) {
+        if (gate.getY() + 1 < height && !map[gate.getY() + 1][gate.getX()]->isWall()) {
+
+        } else if (gate.getX() - 1 >= 0 && !map[gate.getY()][gate.getX() - 1]->isWall()) {
+            dir = LEFT;
+        } else if (gate.getX() + 1 < width && !map[gate.getY()][gate.getX() + 1]->isWall()) {
+            dir = RIGHT;
+        } else if (gate.getY() - 1 >= 0 && !map[gate.getY() - 1][gate.getX()]->isWall()) {
+            dir = UP;
+        } else {
+            gameOver = true;
+        }
+
+    } else if (dir == LEFT) {
+        if (gate.getX() - 1 >= 0 && !map[gate.getY()][gate.getX() - 1]->isWall()) {
+
+        } else if (gate.getY() - 1 >= 0 && !map[gate.getY() - 1][gate.getX()]->isWall()) {
+            dir = UP;
+        } else if (gate.getY() + 1 < height && !map[gate.getY() + 1][gate.getX()]->isWall()) {
+            dir = DOWN;
+        } else if (gate.getX() + 1 < width && !map[gate.getY()][gate.getX() + 1]->isWall()) {
+            dir = RIGHT;
+        } else {
+            gameOver = true;
+        }
+    }
+
+    switch (dir) {
+        case LEFT:
+            snakeHead->moveLeft(hx);
+            break;
+        case RIGHT:
+            snakeHead->moveRight(hx);
+            break;
+        case UP:
+            snakeHead->moveUp(hy);
+            break;
+        case DOWN:
+            snakeHead->moveDown(hy);
+            break;
+    }
+
+    map[hy][hx] = snakeHead;
 }

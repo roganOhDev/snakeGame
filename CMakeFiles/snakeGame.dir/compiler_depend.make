@@ -1496,7 +1496,10 @@ CMakeFiles/snakeGame.dir/game/snake/SnakeHead.cpp.o: game/snake/SnakeHead.cpp \
   game/snake/SnakeHead.h \
   game/Object.h \
   game/Type.h \
-  game/Direction.h
+  game/Direction.h \
+  game/map/Gate.h \
+  game/Object.h \
+  game/map/Wall.h
 
 CMakeFiles/snakeGame.dir/game/snake/SnakeTail.cpp.o: game/snake/SnakeTail.cpp \
   game/snake/SnakeTail.h \
@@ -2258,6 +2261,7 @@ CMakeFiles/snakeGame.dir/main.cpp.o: main.cpp \
   game/Object.h \
   game/snake/SnakeHead.h \
   game/Direction.h \
+  game/map/Gate.h \
   game/snake/SnakeTail.h \
   game/map/ImmuneWall.h \
   game/map/Gate.h

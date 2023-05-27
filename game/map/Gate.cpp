@@ -13,6 +13,9 @@ Type Gate::getType() {
     return GATE;
 }
 
+bool Gate::isWall() {
+    return false;
+}
 
 Gate::Gate(Wall *walls, int nWall) {
     std::random_device rd;
@@ -36,4 +39,12 @@ Gate::Gate(Gate *gate, Wall *walls, int nWall) {
         this->x = walls[wallNum].getX();
         this->y = walls[wallNum].getY();
     } while (gate->getX() == walls[dist(gen)].getX() && gate->getY() == walls[dist(gen)].getY());
+}
+
+Gate Gate::findOtherGate(Gate *gates, Object *gate) {
+    for (int i = 0; i < 2; i++) {
+        if (gates[i].getX() != gate->getX() || gates[i].getY() != gate->getY()) {
+            return gates[i];
+        }
+    }
 }

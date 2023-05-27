@@ -13,3 +13,7 @@ char ImmuneWall::draw() {
 Type ImmuneWall::getType() {
     return IMMUNEWALL;
 }
+
+bool ImmuneWall::isWall() {
+    return true;
+}

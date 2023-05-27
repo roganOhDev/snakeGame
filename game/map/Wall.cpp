@@ -17,3 +17,7 @@ Type Wall::getType() {
 Wall::Wall() {
 
 }
+
+bool Wall::isWall() {
+    return true;
+}

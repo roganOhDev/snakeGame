@@ -16,3 +16,7 @@ char Fruit::draw() {
 Type Fruit::getType() {
     return FRUIT;
 }
+
+bool Fruit::isWall() {
+    return false;
+}

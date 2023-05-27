@@ -8,13 +8,19 @@
 #include "../Object.h"
 #include "Wall.h"
 
-class Gate : public Object{
+class Gate : public Object {
 public:
     Gate(Wall *walls, int nWall);
+
     Gate(Gate *gate, Wall *walls, int nWall);
 
     Type getType();
+
     char draw();
+
+    bool isWall();
+
+    static Gate findOtherGate(Gate *gates, Object *gate);
 };
 
 

@@ -7,6 +7,7 @@
 
 #include "../Object.h"
 #include "../Direction.h"
+#include "../map/Gate.h"
 
 class SnakeHead : public Object{
 public:
@@ -20,8 +21,10 @@ public:
     void moveRight(int &hx);
     void moveUp(int &hy);
     void moveDown(int &hy);
+    void moveToGate(Gate gate, int &hx, int &hy);
 
     Type getType();
+    bool isWall();
 };
 
 
