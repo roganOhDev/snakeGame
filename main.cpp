@@ -19,6 +19,7 @@ Object *map[width][height];
 SnakeTail *snakeTails[100];
 SnakeHead *snakeHead;
 bool passingGate = false;
+int timeAfterPassingGate = 0;
 Gate *gates[2];
 int nGate = 0;
 Wall walls[300];
@@ -178,6 +179,15 @@ void logic() {
     fruitTime++;
     poisonTime++;
     gateTime++;
+
+    if (passingGate) {
+        timeAfterPassingGate++;
+        if (timeAfterPassingGate > nTail) {
+            passingGate = false;
+            timeAfterPassingGate = 0;
+            gateTime = 101;
+        }
+    }
 
     if (fruitTime > maxEatableTime) {
         deleteObject(fruit->getX(), fruit->getY());
