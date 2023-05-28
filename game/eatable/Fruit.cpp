@@ -6,8 +6,7 @@
 
 Fruit::Fruit() : Eatable() {}
 
-Fruit::Fruit(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail) : Eatable(Hx, Hy, width, height,
-                                                                                                snakeTails, nTail) {}
+Fruit::Fruit(int x, int y) : Eatable(x, y) {}
 
 char Fruit::draw() {
     attrset(COLOR_PAIR(3));

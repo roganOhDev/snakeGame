@@ -7,6 +7,7 @@
 #include "game/snake/SnakeTail.h"
 #include "game/map/ImmuneWall.h"
 #include "game/map/Gate.h"
+#include <fstream>
 
 bool gameOver;
 const int width = 30;
@@ -24,7 +25,7 @@ int nGate = 0;
 Wall walls[300];
 int nWall = 0;
 int hx, hy;
-int nTail = 3;
+int nTail = 0;
 Direction dir;
 int inputDelay = 1;
 int gameTime = 0, fruitTime = 0, poisonTime = 0, gateTime = 100;
@@ -62,6 +63,7 @@ void findGateOutDirectionAndMove(Gate gate);
 int main() {
     setup();
     chooseMap();
+    createMap();
 
     while (!gameOver) {
         draw();
@@ -70,7 +72,7 @@ int main() {
         usleep(10000); // Delay for smoother movement
     }
 
-    endwin(); // Terminate ncurses
+    endwin();
 
     cout << "Game Over!" << endl;
     cout << "Your score: " << score << endl;
@@ -85,35 +87,10 @@ void setup() {
     cbreak(); // Disable line buffering, react immediately to input
     curs_set(0); // Hide the cursor
 
-//    start_color();
-//
-//    init_pair(0, COLOR_WHITE, COLOR_BLACK);
-//    init_pair(1, COLOR_BLACK, COLOR_WHITE);
-//    init_pair(2, COLOR_WHITE, COLOR_RED);
-//    init_pair(3, COLOR_WHITE, COLOR_GREEN);
-//    init_pair(4, COLOR_WHITE, COLOR_MAGENTA);
-//    init_pair(5, COLOR_WHITE, COLOR_BLUE);
-//    init_pair(6, COLOR_WHITE, COLOR_YELLOW);
-
-
     gameOver = false;
     dir = STOP;
 
-    snakeHead = new SnakeHead(width / 2, height / 2);
-    hx = snakeHead->getX();
-    hy = snakeHead->getY();
-
-    snakeTails[0] = new SnakeTail(hx, hy + 1);
-    snakeTails[1] = new SnakeTail(hx, hy + 2);
-    snakeTails[2] = new SnakeTail(hx, hy + 3);
-
-    fruit = new Fruit(hx, hy, width, height, *snakeTails, nTail);
-    poison = new Poison(hx, hy, width, height, *snakeTails, nTail);
-
     score = 0;
-
-    createMap();
-
 
 }
 
@@ -131,14 +108,13 @@ void draw() {
     clear();
     printw("Level %d\n", chosenLevel);
 
-    // Draw the top border
-    // Draw the game field
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             printw("%c", map[i][j]->draw());
         }
         printw("\n");
     }
+
     attroff(COLOR_PAIR(0));
     attroff(COLOR_PAIR(1));
     attroff(COLOR_PAIR(2));
@@ -151,15 +127,18 @@ void draw() {
     printw("\n");
 
     // Display the score
+    printw("Fruit: %d %d\n", fruit->getX(),fruit->getY());
+    printw("Poison: %d %d\n", poison->getX(),poison->getY());
+
     printw("Score: %d\n", score);
     printw("Press 'x' to exit\n");
     printw("gameTime: %d\n", gameTime);
 
-    refresh(); // Update the screen
+    refresh();
 }
 
 void input() {
-    keypad(stdscr, TRUE); // Enable keypad input
+    keypad(stdscr, TRUE);
     halfdelay(inputDelay);
 
     int key = getch();
@@ -262,41 +241,62 @@ void logic() {
 }
 
 void createMap() {
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
-                if ((i == 0 && j == 0) || (i == 0 && j == width - 1) || (i == height - 1 && j == 0) ||
-                    (i == height - 1 && j == width - 1)) {
-                    map[i][j] = new ImmuneWall(j, i);
+    fstream file("map1.txt");
+    int i = 0, j = 0;
 
-                } else {
-                    Wall *wall = new Wall(j, i);
-                    map[i][j] = wall;
-                    walls[nWall] = *wall;
-                    nWall++;
-                }
+    if (file.is_open()) {
+        char ch;
+        while (file.get(ch)) {
+            printw("%c", ch);
+            if (j == width) {
+                j = 0;
+                i++;
+            }
 
-            } else if (i == hy && j == hx) {
-                map[i][j] = snakeHead;
+            if (i == height) {
+                break;
+            }
 
-            } else if (i == fruit->getY() && j == fruit->getX())
+            if (ch == '\n') {
+                continue;
+            }
+
+            if (ch == ' ') {
+                map[i][j] = new Object(j, i);
+
+            } else if (ch == '@') {
+                map[i][j] = new ImmuneWall(j, i);
+
+            } else if (ch == '#') {
+                walls[nWall] = *new Wall(j, i);
+                map[i][j] = new Wall(j, i);
+                nWall++;
+
+            } else if (ch == 'F') {
+                fruit = new Fruit(j, i);
                 map[i][j] = fruit;
 
-            else if (i == poison->getY() && j == poison->getX()) {
+            } else if (ch == 'P') {
+                poison = new Poison(j, i);
                 map[i][j] = poison;
 
-            } else {
-                bool hasTail = false;
-                for (int k = 0; k < nTail; k++) {
-                    if (snakeTails[k]->getX() == j && snakeTails[k]->getY() == i) {
-                        map[i][j] = snakeTails[k];
-                        hasTail = true;
-                    }
-                }
-                if (!hasTail)
-                    map[i][j] = new Object(j, i);
+            } else if (ch == 'O') {
+                snakeHead = new SnakeHead(j, i);
+                map[i][j] = snakeHead;
+                hx = snakeHead->getX();
+                hy = snakeHead->getY();
+
+            } else if (ch == 'o') {
+                snakeTails[nTail] = new SnakeTail(j, i);
+                map[i][j] = snakeTails[nTail];
+                nTail++;
             }
+            j++;
         }
+
+        file.close();
+    } else {
+        std::cerr << "Failed to open the file." << std::endl;
     }
 }
 
@@ -393,7 +393,7 @@ void chooseMap() {
 }
 
 int chooseMapInput() {
-    keypad(stdscr, TRUE); // Enable keypad input
+    keypad(stdscr, TRUE);
     halfdelay(inputDelay);
 
     int key = getch();

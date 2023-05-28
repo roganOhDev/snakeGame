@@ -12,10 +12,9 @@ class Poison : public Eatable {
 public:
     Poison();
 
-    Poison(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail);
+    Poison(int x, int y);
 
     char draw();
-
     Type getType();
     bool isWall();
 };

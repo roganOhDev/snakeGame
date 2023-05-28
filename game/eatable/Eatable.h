@@ -9,23 +9,16 @@
 
 class Eatable : public Object{
 public:
-    void setX(int _x);
-
     int getX() const;
-
-    void setY(int _x);
 
     int getY() const;
 
     Eatable();
 
-    Eatable(int Hx, int Hy, int width, int height, SnakeTail *snakeTails,int nTail);
+    Eatable(int x, int y);
 
     void newPosition(int Hx, int Hy, int width, int height, SnakeTail *snakeTails,int nTail);
 
-private:
-    int x;
-    int y;
 };
 
 
