@@ -241,7 +241,7 @@ void logic() {
 }
 
 void createMap() {
-    fstream file("map1.txt");
+    fstream file("game/map/map1.txt");
     int i = 0, j = 0;
 
     if (file.is_open()) {
