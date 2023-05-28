@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unistd.h>
+#include <fstream>
 #include "game/eatable/Fruit.h"
 #include "game/eatable/Poison.h"
 #include "game/map/Wall.h"
@@ -7,7 +8,6 @@
 #include "game/snake/SnakeTail.h"
 #include "game/map/ImmuneWall.h"
 #include "game/map/Gate.h"
-#include <fstream>
 
 bool gameOver;
 const int width = 30;
@@ -127,9 +127,6 @@ void draw() {
     printw("\n");
 
     // Display the score
-    printw("Fruit: %d %d\n", fruit->getX(),fruit->getY());
-    printw("Poison: %d %d\n", poison->getX(),poison->getY());
-
     printw("Score: %d\n", score);
     printw("Press 'x' to exit\n");
     printw("gameTime: %d\n", gameTime);
@@ -241,7 +238,19 @@ void logic() {
 }
 
 void createMap() {
-    fstream file("game/map/map1.txt");
+    fstream file;
+    switch (chosenLevel) {
+        case 1:
+            file.open("game/map/map1.txt", std::ios::in);
+            break;
+        case 2:
+            file.open("game/map/map2.txt", std::ios::in);
+            break;
+        case 3:
+            file.open("game/map/map3.txt", std::ios::in);
+            break;
+    }
+
     int i = 0, j = 0;
 
     if (file.is_open()) {
@@ -377,19 +386,16 @@ void deleteObject(int x, int y) {
 }
 
 void chooseMap() {
-    int choose = 0;
-    while (!choose) {
+    while (!chosenLevel) {
         clear();
         printw("Choose map: \n\n");
         printw("1. Map 1\n");
         printw("2. Map 2\n");
         printw("3. Map 3\n");
-        choose = chooseMapInput();
+        chosenLevel = chooseMapInput();
         usleep(10000); // Delay for smoother movement
         refresh();
     }
-
-    chosenLevel = choose;
 }
 
 int chooseMapInput() {
