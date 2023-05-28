@@ -7,6 +7,7 @@
 SnakeHead::SnakeHead(int x, int y) : Object(x, y) {}
 
 char SnakeHead::draw() {
+    attrset(COLOR_PAIR(5));
     return 'O';
 }
 

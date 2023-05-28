@@ -7,6 +7,7 @@
 Wall::Wall(int x, int y) : Object(x, y) {}
 
 char Wall::draw() {
+    attrset(COLOR_PAIR(1));
     return '#';
 }
 

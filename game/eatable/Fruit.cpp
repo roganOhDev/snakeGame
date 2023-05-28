@@ -10,6 +10,7 @@ Fruit::Fruit(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int n
                                                                                                 snakeTails, nTail) {}
 
 char Fruit::draw() {
+    attrset(COLOR_PAIR(3));
     return 'F';
 }
 

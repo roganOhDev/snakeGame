@@ -7,6 +7,7 @@
 SnakeTail::SnakeTail(int x, int y) : Object(x, y) {}
 
 char SnakeTail::draw() {
+    attrset(COLOR_PAIR(6));
     return 'o';
 }
 

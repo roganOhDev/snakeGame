@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ncurses.h>
 #include <unistd.h>
 #include "game/eatable/Fruit.h"
 #include "game/eatable/Poison.h"
@@ -86,6 +85,17 @@ void setup() {
     cbreak(); // Disable line buffering, react immediately to input
     curs_set(0); // Hide the cursor
 
+//    start_color();
+//
+//    init_pair(0, COLOR_WHITE, COLOR_BLACK);
+//    init_pair(1, COLOR_BLACK, COLOR_WHITE);
+//    init_pair(2, COLOR_WHITE, COLOR_RED);
+//    init_pair(3, COLOR_WHITE, COLOR_GREEN);
+//    init_pair(4, COLOR_WHITE, COLOR_MAGENTA);
+//    init_pair(5, COLOR_WHITE, COLOR_BLUE);
+//    init_pair(6, COLOR_WHITE, COLOR_YELLOW);
+
+
     gameOver = false;
     dir = STOP;
 
@@ -108,6 +118,16 @@ void setup() {
 }
 
 void draw() {
+    start_color();
+
+    assume_default_colors(COLOR_WHITE, COLOR_WHITE);
+    init_pair(1, COLOR_WHITE, COLOR_WHITE);
+    init_pair(2, COLOR_RED, COLOR_RED);
+    init_pair(3, COLOR_GREEN, COLOR_GREEN);
+    init_pair(4, COLOR_MAGENTA, COLOR_MAGENTA);
+    init_pair(5, COLOR_BLUE, COLOR_BLUE);
+    init_pair(6, COLOR_YELLOW, COLOR_YELLOW);
+
     clear();
     printw("Level %d\n", chosenLevel);
 
@@ -119,6 +139,13 @@ void draw() {
         }
         printw("\n");
     }
+    attroff(COLOR_PAIR(0));
+    attroff(COLOR_PAIR(1));
+    attroff(COLOR_PAIR(2));
+    attroff(COLOR_PAIR(3));
+    attroff(COLOR_PAIR(4));
+    attroff(COLOR_PAIR(5));
+    attroff(COLOR_PAIR(6));
 
     // Draw the bottom border
     printw("\n");

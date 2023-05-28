@@ -6,6 +6,7 @@
 #define SNAKEGAME_OBJECT_H
 
 #include "Type.h"
+#include <ncurses.h>
 
 class Object {
 public:

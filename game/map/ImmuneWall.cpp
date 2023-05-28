@@ -7,6 +7,7 @@
 ImmuneWall::ImmuneWall(int x, int y) : Object(x, y) {}
 
 char ImmuneWall::draw() {
+    attrset(COLOR_PAIR(1));
     return '@';
 }
 

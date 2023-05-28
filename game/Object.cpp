@@ -12,6 +12,7 @@ Object::Object(int x, int y) {
 }
 
 char Object::draw() {
+    attrset(COLOR_PAIR(0));
     return ' ';
 }
 

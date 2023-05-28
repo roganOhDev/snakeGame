@@ -6,6 +6,7 @@
 #include "Gate.h"
 
 char Gate::draw() {
+    attrset(COLOR_PAIR(4));
     return 'G';
 }
 
