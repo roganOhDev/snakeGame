@@ -11,14 +11,6 @@ char SnakeTail::draw() {
     return 'o';
 }
 
-int SnakeTail::getX() {
-    return x;
-}
-
-int SnakeTail::getY() {
-    return y;
-}
-
 void SnakeTail::setPosition(int _x, int _y) {
     x = _x;
     y = _y;

@@ -11,8 +11,6 @@ class SnakeTail : public Object{
 public:
     SnakeTail(int x, int y);
     char draw();
-    int getX();
-    int getY();
     void setPosition(int _x, int _y);
     Type getType();
     bool isWall();

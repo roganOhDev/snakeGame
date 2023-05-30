@@ -17,17 +17,19 @@ Eatable::Eatable() {}
 
 Eatable::Eatable(int x, int y) : Object(x, y) {}
 
-void Eatable::newPosition(int Hx, int Hy, int width, int height, SnakeTail *snakeTails, int nTail) {
+void Eatable::newPosition(int Hx, int Hy, SnakeTail *snakeTails, int nTail, Object *blanks,
+                          int nBlank) {
     bool onTail;
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(1);
+    std::uniform_int_distribution<int> dist(0, nBlank - 1);
 
     do {
         onTail = false;
-        x = dist(gen) % width;
-        y = dist(gen) % height;
+        int randIndex = dist(gen);
+        x = blanks[randIndex].getX();
+        y = blanks[randIndex].getY();
 
         for (int i = 0; i < nTail; i++) {
             if (snakeTails[i].getX() == x && snakeTails[i].getY() == y) {
@@ -39,6 +41,5 @@ void Eatable::newPosition(int Hx, int Hy, int width, int height, SnakeTail *snak
                 break;
             }
         }
-    } while ((x == Hx && y == Hy) || x >= width - 1 || y >= height - 1 || x == 0 || y == 0 || onTail);
+    } while ((x == Hx && y == Hy) || onTail);
 }
-

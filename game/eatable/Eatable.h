@@ -17,7 +17,7 @@ public:
 
     Eatable(int x, int y);
 
-    void newPosition(int Hx, int Hy, int width, int height, SnakeTail *snakeTails,int nTail);
+    void newPosition(int Hx, int Hy, SnakeTail *snakeTails, int nTail, Object *blanks, int nBlank);
 
 };
 

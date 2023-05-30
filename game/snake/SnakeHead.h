@@ -14,8 +14,6 @@ public:
     SnakeHead();
     SnakeHead(int x, int y);
     char draw();
-    int getX();
-    int getY();
 
     void moveLeft(int &hx);
     void moveRight(int &hx);

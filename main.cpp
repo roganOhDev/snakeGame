@@ -1,4 +1,5 @@
 #include <iostream>
+#include<random>
 #include <unistd.h>
 #include <fstream>
 #include "game/eatable/Fruit.h"
@@ -22,7 +23,7 @@ bool passingGate = false;
 int timeAfterPassingGate = 0;
 Gate *gates[2];
 int nGate = 0;
-Wall walls[300];
+Wall *walls[300];
 int nWall = 0;
 int hx, hy;
 int nTail = 0;
@@ -31,8 +32,14 @@ int inputDelay = 1;
 int gameTime = 0, fruitTime = 0, poisonTime = 0, gateTime = 100;
 int maxEatableTime = 50;
 int chosenLevel = 0;
+Object *blanks[width * height];
+int nBlanks = 0;
 
 using namespace std;
+
+int createGate1(int wallNum);
+
+void createGate2(int wallNum);
 
 void setup();
 
@@ -59,6 +66,10 @@ void createGate();
 void gateToWall();
 
 void findGateOutDirectionAndMove(Gate gate);
+
+void newFruit();
+
+void newPoison();
 
 int main() {
     setup();
@@ -194,16 +205,14 @@ void logic() {
 
     if (fruitTime > maxEatableTime) {
         deleteObject(fruit->getX(), fruit->getY());
-        fruit->newPosition(hx, hy, width, height, *snakeTails, nTail);
-        map[fruit->getY()][fruit->getX()] = fruit;
+        newFruit();
         score -= 5;
         fruitTime = 0;
     }
 
     if (poisonTime > maxEatableTime) {
         deleteObject(poison->getX(), poison->getY());
-        poison->newPosition(hx, hy, width, height, *snakeTails, nTail);
-        map[poison->getY()][poison->getX()] = poison;
+        newPoison();
         poisonTime = 0;
     }
 
@@ -271,14 +280,15 @@ void createMap() {
             }
 
             if (ch == ' ') {
-                map[i][j] = new Object(j, i);
+                blanks[nBlanks] = new Object(j, i);
+                map[i][j] = blanks[nBlanks++];
 
             } else if (ch == '@') {
                 map[i][j] = new ImmuneWall(j, i);
 
             } else if (ch == '#') {
-                walls[nWall] = *new Wall(j, i);
-                map[i][j] = new Wall(j, i);
+                walls[nWall] = new Wall(j, i);
+                map[i][j] = walls[nWall];
                 nWall++;
 
             } else if (ch == 'F') {
@@ -316,8 +326,8 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
 
     if (tmpObject->getType() == FRUIT) {
         score += 10;
-        fruit->newPosition(hx, hy, width, height, *snakeTails, nTail);
-        map[fruit->getY()][fruit->getX()] = fruit;
+
+        newFruit();
 
         eatFruit = true;
         fruitTime = 0;
@@ -325,8 +335,7 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
     } else if (tmpObject->getType() == POISON) {
         score -= 10;
 
-        poison->newPosition(hx, hy, width, height, *snakeTails, nTail);
-        map[poison->getY()][poison->getX()] = poison;
+        newPoison();
 
         deleteObject(snakeTails[nTail - 1]->getX(), snakeTails[nTail - 1]->getY());
         nTail--;
@@ -345,7 +354,8 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         snakeHead->moveToGate(outGate, hx, hy);
         findGateOutDirectionAndMove(outGate);
 
-    } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL) {
+    } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL ||
+               tmpObject->getType() == IMMUNE_WALL) {
         gameOver = true;
 
     } else if (tmpObject->getType() == OBJECT) {
@@ -419,17 +429,36 @@ int chooseMapInput() {
 }
 
 void createGate() {
-    Gate *gate0 = new Gate(walls, nWall);
-    gates[0] = gate0;
-    map[gates[0]->getY()][gates[0]->getX()] = gate0;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, nWall - 1);
 
-    Gate *gate1 = new Gate(walls, nWall);
-    gates[1] = gate1;
-    map[gates[1]->getY()][gates[1]->getX()] = gate1;
+    int gate1WallNum = createGate1(dist(gen));
+    int gate2WallNum = 0;
+
+    do{
+        gate2WallNum = dist(gen);
+    } while (gate1WallNum == gate2WallNum);
+
+    createGate2(gate2WallNum);
 
     gateTime = 0;
     passingGate = false;
     nGate = 2;
+}
+
+int createGate1(int wallNum) {
+    Gate *gate0 = new Gate(walls[wallNum]->getX(), walls[wallNum]->getY());
+    gates[0] = gate0;
+    map[gates[0]->getY()][gates[0]->getX()] = gates[0];
+
+    return wallNum;
+}
+
+void createGate2(int wallNum) {
+    Gate *gate1 = new Gate(walls[wallNum]->getX(), walls[wallNum]->getY());
+    gates[1] = gate1;
+    map[gates[1]->getY()][gates[1]->getX()] = gates[1];
 }
 
 void gateToWall() {
@@ -512,4 +541,14 @@ void findGateOutDirectionAndMove(Gate gate) {
     }
 
     map[hy][hx] = snakeHead;
+}
+
+void newFruit() {
+    fruit->newPosition(hx, hy, *snakeTails, nTail, *blanks, nBlanks);
+    map[fruit->getY()][fruit->getX()] = fruit;
+}
+
+void newPoison() {
+    poison->newPosition(hx, hy, *snakeTails, nTail, *blanks, nBlanks);
+    map[poison->getY()][poison->getX()] = poison;
 }
