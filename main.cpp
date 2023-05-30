@@ -33,7 +33,7 @@ int gameTime = 0, fruitTime = 0, poisonTime = 0, gateTime = 100;
 int maxEatableTime = 50;
 int chosenLevel = 0;
 Object *blanks[width * height];
-int nBlanks = 0;
+int nBlank = 0;
 
 using namespace std;
 
@@ -70,6 +70,8 @@ void findGateOutDirectionAndMove(Gate gate);
 void newFruit();
 
 void newPoison();
+
+int getBlankIndexForEatable();
 
 int main() {
     setup();
@@ -280,8 +282,8 @@ void createMap() {
             }
 
             if (ch == ' ') {
-                blanks[nBlanks] = new Object(j, i);
-                map[i][j] = blanks[nBlanks++];
+                blanks[nBlank] = new Object(j, i);
+                map[i][j] = blanks[nBlank++];
 
             } else if (ch == '@') {
                 map[i][j] = new ImmuneWall(j, i);
@@ -544,11 +546,43 @@ void findGateOutDirectionAndMove(Gate gate) {
 }
 
 void newFruit() {
-    fruit->newPosition(hx, hy, *snakeTails, nTail, *blanks, nBlanks);
+    int randIndex= getBlankIndexForEatable();
+
+    fruit->newPosition(blanks[randIndex]->getX(), blanks[randIndex]->getY());
     map[fruit->getY()][fruit->getX()] = fruit;
 }
 
 void newPoison() {
-    poison->newPosition(hx, hy, *snakeTails, nTail, *blanks, nBlanks);
+    int randIndex= getBlankIndexForEatable();
+
+    poison->newPosition(blanks[randIndex]->getX(), blanks[randIndex]->getY());
     map[poison->getY()][poison->getX()] = poison;
+}
+
+int getBlankIndexForEatable() {
+    bool onTail;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, nBlank - 1);
+
+    int randIndex;
+
+    do {
+        onTail = false;
+        randIndex = dist(gen);
+
+        for (int i = 0; i < nTail; i++) {
+            if (snakeTails[i]->getX() == blanks[randIndex]->getX() && snakeTails[i]->getY() == blanks[randIndex]->getY()) {
+                onTail = true;
+                break;
+            }
+
+            if (nTail == 0) {
+                break;
+            }
+        }
+    } while ((blanks[randIndex]->getX() == hx && blanks[randIndex]->getY() == hy) || onTail);
+
+    return randIndex;
 }
