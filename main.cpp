@@ -17,7 +17,8 @@ int score;
 Fruit *fruit;
 Poison *poison;
 Object *map[width][height];
-SnakeTail *snakeTails[100];
+const int maxLength = 21;
+SnakeTail *snakeTails[maxLength];
 SnakeHead *snakeHead;
 bool passingGate = false;
 int timeAfterPassingGate = 0;
@@ -35,7 +36,17 @@ int chosenLevel = 0;
 Object *blanks[width * height];
 int nBlank = 0;
 
+int fruitEatCnt = 0;
+int poisonEatCnt = 0;
+int gateUseCnt = 0;
+const int targetUseGateCnt = 3;
+const int maxPoisonEatCnt = 5;
+
 using namespace std;
+
+void displayMission();
+
+void displayScore();
 
 int createGate1(int wallNum);
 
@@ -88,6 +99,9 @@ int main() {
     endwin();
 
     cout << "Game Over!" << endl;
+    if (nTail == maxLength - 1 && gateUseCnt >= targetUseGateCnt) {
+        cout << "You win!" << endl;
+    }
     cout << "Your score: " << score << endl;
 
     return 0;
@@ -139,13 +153,40 @@ void draw() {
     // Draw the bottom border
     printw("\n");
 
-    // Display the score
-    printw("Score: %d\n", score);
+    displayScore();
+    displayMission();
     printw("Press 'x' to exit\n");
-    printw("gameTime: %d\n", gameTime);
 
     refresh();
 }
+
+void displayScore() {
+    printw("Score Board\n");
+    printw("Score: %d\n", score);
+    printw("Fruit Eat Count: %d\n", fruitEatCnt);
+    printw("Poison Eat Count: %d\n", poisonEatCnt);
+    printw("Gate Use Count : %d\n", gateUseCnt);
+    printw("Game Time: %d\n\n", gameTime / 10);
+}
+
+void displayMission() {
+    printw("Mission\n");
+
+    printw("Eat %d fruits (", maxLength - 1);
+    if (fruitEatCnt >= maxLength - 1) {
+        printw("v");
+    }
+    printw(")\n");
+
+    printw("Eat poisons less then %d (v)\n", maxPoisonEatCnt);
+
+    printw("Use %d gates (", targetUseGateCnt);
+    if (gateUseCnt >= 3) {
+        printw("v");
+    }
+    printw(")\n");
+}
+
 
 void input() {
     keypad(stdscr, TRUE);
@@ -208,7 +249,7 @@ void logic() {
     if (fruitTime > maxEatableTime) {
         deleteObject(fruit->getX(), fruit->getY());
         newFruit();
-        score -= 5;
+        score -= 3;
         fruitTime = 0;
     }
 
@@ -328,6 +369,7 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
 
     if (tmpObject->getType() == FRUIT) {
         score += 10;
+        fruitEatCnt++;
 
         newFruit();
 
@@ -342,7 +384,7 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
         deleteObject(snakeTails[nTail - 1]->getX(), snakeTails[nTail - 1]->getY());
         nTail--;
 
-        if (nTail < 3) {
+        if (nTail < 2 || ++poisonEatCnt >= maxPoisonEatCnt) {
             gameOver = true;
         }
 
@@ -355,6 +397,8 @@ void snakeMove(int beforeX, int beforeY, int newX, int newY, int prevHx, int pre
 
         snakeHead->moveToGate(outGate, hx, hy);
         findGateOutDirectionAndMove(outGate);
+
+        gateUseCnt++;
 
     } else if (tmpObject->getType() == WALL || tmpObject->getType() == SNAKE_TAIL ||
                tmpObject->getType() == IMMUNE_WALL) {
@@ -387,7 +431,10 @@ void updateTail(int prevHx, int prevHy, bool eatFruit) {
     if (eatFruit) {
         snakeTails[nTail] = new SnakeTail(x, y);
         map[y][x] = snakeTails[nTail];
-        nTail++;
+
+        if (++nTail >= maxLength - 1) {
+            gameOver = true;
+        }
     } else {
         deleteObject(x, y);
     }
@@ -404,6 +451,7 @@ void chooseMap() {
         printw("1. Map 1\n");
         printw("2. Map 2\n");
         printw("3. Map 3\n");
+        printw("Press 'x' to exit\n");
         chosenLevel = chooseMapInput();
         usleep(10000); // Delay for smoother movement
         refresh();
@@ -438,7 +486,7 @@ void createGate() {
     int gate1WallNum = createGate1(dist(gen));
     int gate2WallNum = 0;
 
-    do{
+    do {
         gate2WallNum = dist(gen);
     } while (gate1WallNum == gate2WallNum);
 
@@ -546,14 +594,14 @@ void findGateOutDirectionAndMove(Gate gate) {
 }
 
 void newFruit() {
-    int randIndex= getBlankIndexForEatable();
+    int randIndex = getBlankIndexForEatable();
 
     fruit->newPosition(blanks[randIndex]->getX(), blanks[randIndex]->getY());
     map[fruit->getY()][fruit->getX()] = fruit;
 }
 
 void newPoison() {
-    int randIndex= getBlankIndexForEatable();
+    int randIndex = getBlankIndexForEatable();
 
     poison->newPosition(blanks[randIndex]->getX(), blanks[randIndex]->getY());
     map[poison->getY()][poison->getX()] = poison;
@@ -573,7 +621,8 @@ int getBlankIndexForEatable() {
         randIndex = dist(gen);
 
         for (int i = 0; i < nTail; i++) {
-            if (snakeTails[i]->getX() == blanks[randIndex]->getX() && snakeTails[i]->getY() == blanks[randIndex]->getY()) {
+            if (snakeTails[i]->getX() == blanks[randIndex]->getX() &&
+                snakeTails[i]->getY() == blanks[randIndex]->getY()) {
                 onTail = true;
                 break;
             }
