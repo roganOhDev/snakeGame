@@ -350,13 +350,13 @@ void createMap() {
             file.open("game/map/map1.txt", std::ios::in);
             break;
         case 2:
-            file.open("game/map/map2.txt", std::ios::in);
+            file.open("game/map/map4.txt", std::ios::in);
             break;
         case 3:
             file.open("game/map/map3.txt", std::ios::in);
             break;
         case 4:
-            file.open("game/map/map4.txt", std::ios::in);
+            file.open("game/map/map2.txt", std::ios::in);
             break;
     }
 
