@@ -15,7 +15,7 @@ Type Gate::getType() {
 }
 
 bool Gate::isWall() {
-    return false;
+    return true;
 }
 
 Gate Gate::findOtherGate(Gate *gates, Object *gate) {
@@ -27,3 +27,7 @@ Gate Gate::findOtherGate(Gate *gates, Object *gate) {
 }
 
 Gate::Gate(int x, int y) : Object(x, y) {}
+
+Gate::Gate() {
+
+}

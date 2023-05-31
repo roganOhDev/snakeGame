@@ -11,7 +11,7 @@ class Gate : public Object {
 public:
     Gate(int x, int y);
 
-    Gate(Gate gate0, int x, int y);
+    Gate();
 
     Type getType();
 

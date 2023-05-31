@@ -9,6 +9,7 @@
 
 class SnakeTail : public Object{
 public:
+    SnakeTail();
     SnakeTail(int x, int y);
     char draw();
     void setPosition(int _x, int _y);

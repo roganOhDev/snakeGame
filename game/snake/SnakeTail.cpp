@@ -23,3 +23,7 @@ Type SnakeTail::getType() {
 bool SnakeTail::isWall() {
     return false;
 }
+
+SnakeTail::SnakeTail() {
+
+}

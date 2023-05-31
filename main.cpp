@@ -17,7 +17,7 @@ int score;
 Fruit *fruit;
 Poison *poison;
 Object *map[width][height];
-const int maxLength = 21;
+const int maxLength = 23;
 SnakeTail *snakeTails[maxLength];
 SnakeHead *snakeHead;
 bool passingGate = false;
@@ -31,10 +31,12 @@ int nTail = 0;
 Direction dir;
 int inputDelay = 1;
 int gameTime = 0, fruitTime = 0, poisonTime = 0, gateTime = 100;
-int maxEatableTime = 50;
+const int maxEatableTime = 50;
 int chosenLevel = 0;
 Object *blanks[width * height];
 int nBlank = 0;
+
+bool missionMode = false;
 
 int fruitEatCnt = 0;
 int poisonEatCnt = 0;
@@ -84,9 +86,15 @@ void newPoison();
 
 int getBlankIndexForEatable();
 
+bool isWin();
+
+void initArrays();
+
 int main() {
     setup();
     chooseMap();
+
+    createLevel:
     createMap();
 
     while (!gameOver) {
@@ -96,15 +104,54 @@ int main() {
         usleep(10000); // Delay for smoother movement
     }
 
+    if (isWin() && missionMode && chosenLevel++ < 4) {
+        gameOver = false;
+        dir = STOP;
+
+        gateUseCnt = 0;
+        poisonEatCnt = 0;
+        fruitEatCnt = 0;
+
+        timeAfterPassingGate = 0;
+        fruitTime = 0;
+        poisonTime = 0;
+        gateTime = 100;
+
+        nTail = 0;
+        nWall = 0;
+        nBlank = 0;
+        nGate = 0;
+
+        initArrays();
+
+        goto createLevel;
+    }
+
     endwin();
 
     cout << "Game Over!" << endl;
-    if (nTail == maxLength - 1 && gateUseCnt >= targetUseGateCnt) {
+    if (isWin()) {
         cout << "You win!" << endl;
     }
     cout << "Your score: " << score << endl;
 
     return 0;
+}
+
+void initArrays() {
+    for (int i = 0; i < 300; i++) {
+        walls[i] = new Wall();
+    }
+    for (int i = 0; i < maxLength; i++) {
+        snakeTails[i] = new SnakeTail();
+    }
+    for (int i = 0; i < 2; i++) {
+        gates[i] = new Gate();
+    }
+}
+
+bool isWin() {
+    return fruitEatCnt == maxLength - 3 && gateUseCnt >= targetUseGateCnt;
 }
 
 void setup() {
@@ -133,6 +180,7 @@ void draw() {
     init_pair(6, COLOR_YELLOW, COLOR_YELLOW);
 
     clear();
+
     printw("Level %d\n", chosenLevel);
 
     for (int i = 0; i < height; i++) {
@@ -172,8 +220,8 @@ void displayScore() {
 void displayMission() {
     printw("Mission\n");
 
-    printw("Eat %d fruits (", maxLength - 1);
-    if (fruitEatCnt >= maxLength - 1) {
+    printw("Eat %d fruits (", maxLength - 3);
+    if (fruitEatCnt >= maxLength - 3) {
         printw("v");
     }
     printw(")\n");
@@ -181,7 +229,7 @@ void displayMission() {
     printw("Eat poisons less then %d (v)\n", maxPoisonEatCnt);
 
     printw("Use %d gates (", targetUseGateCnt);
-    if (gateUseCnt >= 3) {
+    if (gateUseCnt >= targetUseGateCnt) {
         printw("v");
     }
     printw(")\n");
@@ -293,6 +341,7 @@ void createMap() {
     fstream file;
     switch (chosenLevel) {
         case 1:
+        case 5:
             file.open("game/map/map1.txt", std::ios::in);
             break;
         case 2:
@@ -300,6 +349,9 @@ void createMap() {
             break;
         case 3:
             file.open("game/map/map3.txt", std::ios::in);
+            break;
+        case 4:
+            file.open("game/map/map4.txt", std::ios::in);
             break;
     }
 
@@ -451,6 +503,8 @@ void chooseMap() {
         printw("1. Map 1\n");
         printw("2. Map 2\n");
         printw("3. Map 3\n");
+        printw("4. Map 4\n\n");
+        printw("5. Mission Mode (All Maps) \n\n");
         printw("Press 'x' to exit\n");
         chosenLevel = chooseMapInput();
         usleep(10000); // Delay for smoother movement
@@ -470,9 +524,14 @@ int chooseMapInput() {
             return 2;
         case '3':
             return 3;
+        case '4':
+            return 4;
+        case '5':
+            missionMode = true;
+            return 1;
         case 'x':
             gameOver = true;
-            return 4;
+            return 6;
         default:
             return 0;
     }
