@@ -90,6 +90,8 @@ bool isWin();
 
 void initArrays();
 
+void initGameValues();
+
 int main() {
     setup();
     chooseMap();
@@ -105,23 +107,7 @@ int main() {
     }
 
     if (isWin() && missionMode && chosenLevel++ < 4) {
-        gameOver = false;
-        dir = STOP;
-
-        gateUseCnt = 0;
-        poisonEatCnt = 0;
-        fruitEatCnt = 0;
-
-        timeAfterPassingGate = 0;
-        fruitTime = 0;
-        poisonTime = 0;
-        gateTime = 100;
-
-        nTail = 0;
-        nWall = 0;
-        nBlank = 0;
-        nGate = 0;
-
+        initGameValues();
         initArrays();
 
         goto createLevel;
@@ -136,6 +122,25 @@ int main() {
     cout << "Your score: " << score << endl;
 
     return 0;
+}
+
+void initGameValues() {
+    gameOver = false;
+    dir = STOP;
+
+    gateUseCnt = 0;
+    poisonEatCnt = 0;
+    fruitEatCnt = 0;
+
+    timeAfterPassingGate = 0;
+    fruitTime = 0;
+    poisonTime = 0;
+    gateTime = 100;
+
+    nTail = 0;
+    nWall = 0;
+    nBlank = 0;
+    nGate = 0;
 }
 
 void initArrays() {
