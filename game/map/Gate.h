@@ -5,8 +5,6 @@
 #ifndef SNAKEGAME_GATE_H
 #define SNAKEGAME_GATE_H
 
-#include "Wall.h"
-
 class Gate : public Object {
 public:
     Gate(int x, int y);

@@ -4,7 +4,6 @@
 #ifndef SNAKEGAME_EATABLE_H
 #define SNAKEGAME_EATABLE_H
 
-#include "../snake/SnakeTail.h"
 #include "../Object.h"
 
 class Eatable : public Object{

@@ -7,7 +7,6 @@
 
 
 #include "Eatable.h"
-#include "../snake/SnakeTail.h"
 
 class Fruit : public Eatable {
 public:

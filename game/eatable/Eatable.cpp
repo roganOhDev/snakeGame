@@ -3,7 +3,6 @@
 //
 
 #include "Eatable.h"
-#include<random>
 
 int Eatable::getX() const {
     return x;

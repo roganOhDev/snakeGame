@@ -2,7 +2,7 @@
 // Created by Oh DongGeun on 2023/05/25.
 //
 
-#include<random>
+#include "Wall.h"
 #include "Gate.h"
 
 char Gate::draw() {

@@ -3,6 +3,7 @@
 //
 
 #include "Object.h"
+#include <ncurses.h>
 
 Object::Object() {}
 
