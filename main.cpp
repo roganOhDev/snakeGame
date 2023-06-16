@@ -156,7 +156,7 @@ void initArrays() {
 }
 
 bool isWin() {
-    return fruitEatCnt == maxLength - 3 && gateUseCnt >= targetUseGateCnt;
+    return fruitEatCnt >= maxLength - 3 && gateUseCnt >= targetUseGateCnt;
 }
 
 void setup() {
@@ -490,7 +490,7 @@ void updateTail(int prevHx, int prevHy, bool eatFruit) {
         map[y][x] = snakeTails[nTail];
 
         ++nTail;
-        if (fruitEatCnt == maxLength - 3) {
+        if (fruitEatCnt >= maxLength - 3) {
             gameOver = true;
         }
     } else {
