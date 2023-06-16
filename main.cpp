@@ -489,7 +489,8 @@ void updateTail(int prevHx, int prevHy, bool eatFruit) {
         snakeTails[nTail] = new SnakeTail(x, y);
         map[y][x] = snakeTails[nTail];
 
-        if (++nTail >= maxLength - 1) {
+        ++nTail;
+        if (fruitEatCnt == maxLength - 3) {
             gameOver = true;
         }
     } else {
