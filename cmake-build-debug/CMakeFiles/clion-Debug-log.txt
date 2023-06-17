@@ -1,4 +1,4 @@
-Cannot generate into /Users/ohdonggeun/workspace/test/snakeGame
-It is already used for project /Users/ohdonggeun/workspace/snakeGame
+Cannot generate into /Users/ohdonggeun/workspace/snakeGame
+It was created with incompatible generator 'Unix Makefiles'
 
 Please either delete it manually or select another generation directory

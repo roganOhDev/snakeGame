@@ -1,4 +1,4 @@
-# Install script for directory: /Users/ohdonggeun/workspace/test/snakeGame
+# Install script for directory: /Users/ohdonggeun/workspace/snakeGame
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/ohdonggeun/workspace/test/snakeGame/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/ohdonggeun/workspace/snakeGame/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
